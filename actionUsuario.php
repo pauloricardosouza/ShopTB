@@ -89,7 +89,7 @@
                 $erroPreenchimento = true;
             }
             else{
-                //Filtra e Armazena o valor na variável
+                //Filtra e Armazena o valor na variável || Aplica a função md5 para criptografar a senha
                 $senhaUsuario = md5(filtrar_entrada($_POST["senhaUsuario"]));
             }
 
@@ -100,7 +100,7 @@
                 $erroPreenchimento = true;
             }
             else{
-                //Filtra e Armazena o valor na variável
+                //Filtra e Armazena o valor na variável || Aplica a função md5 para criptografar a senha
                 $confirmarSenhaUsuario = md5(filtrar_entrada($_POST["confirmarSenhaUsuario"]));
 
                 //Compara se as senhas são diferentes
