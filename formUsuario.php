@@ -10,31 +10,31 @@
                     
                     <h2>Cadastro de Usuário:</h2>
 
-                    <form action="#" method="POST" class="was-validated">
+                    <form action="actionUsuario.php" method="POST" class="was-validated">
 
                         <div class="form-floating mt-3 mb-3">
-                            <input type="file" class="form-control" id="fotoUsuario" placeholder="Foto" name="fotoUsuario" required>
+                            <input type="file" class="form-control" id="fotoUsuario" placeholder="Foto" name="fotoUsuario">
                             <label for="fotoUsuario">Foto</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="nomeUsuario" placeholder="Nome" name="nomeUsuario" required>
+                            <input type="text" class="form-control" id="nomeUsuario" placeholder="Nome" name="nomeUsuario">
                             <label for="nomeUsuario">Nome Completo</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-floating mt-3 mb-3">
-                            <input type="date" class="form-control" id="dataNascimentoUsuario" placeholder="dataNascimentoUsuario" name="dataNascimentoUsuario" required>
+                            <input type="date" class="form-control" id="dataNascimentoUsuario" placeholder="dataNascimentoUsuario" name="dataNascimentoUsuario">
                             <label for="dataNascimentoUsuario">Data de Nascimento</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-floating mt-3 mb-3">
-                            <select class="form-select" id="cidadeUsuario" name="cidadeUsuario" placeholder="Cidade" required>
+                            <select class="form-select" id="cidadeUsuario" name="cidadeUsuario" placeholder="Cidade">
                                 <option value="curiuva">Curiúva</option>
                                 <option value="imbau">Imbaú</option>
                                 <option value="ortigueira">Ortigueira</option>
@@ -48,19 +48,19 @@
                         </div>
 
                         <div class="form-floating mt-3 mb-3">
-                            <input type="email" class="form-control" id="emailUsuario" placeholder="Email" name="emailUsuario" required>
+                            <input type="email" class="form-control" id="emailUsuario" placeholder="Email" name="emailUsuario">
                             <label for="emailUsuario">Email</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-floating mt-3 mb-3">
-                            <input type="password" class="form-control" id="senhaUsuario" placeholder="Email" name="senhaUsuario" required>
+                            <input type="password" class="form-control" id="senhaUsuario" placeholder="Email" name="senhaUsuario">
                             <label for="senhaUsuario">Senha</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-floating mt-3 mb-3">
-                            <input type="password" class="form-control" id="confirmarSenhaUsuario" placeholder="Confirmar Senha" name="confirmarSenhaUsuario" required>
+                            <input type="password" class="form-control" id="confirmarSenhaUsuario" placeholder="Confirmar Senha" name="confirmarSenhaUsuario">
                             <label for="confirmarSenhaUsuario">Confirmar Senha</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
