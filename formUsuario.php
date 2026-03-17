@@ -10,7 +10,7 @@
                     
                     <h2>Cadastro de Usuário:</h2>
 
-                    <form action="actionUsuario.php" method="POST" class="was-validated">
+                    <form action="actionUsuario.php" method="POST" class="was-validated" enctype="multipart/form-data">
 
                         <div class="form-floating mt-3 mb-3">
                             <input type="file" class="form-control" id="fotoUsuario" placeholder="Foto" name="fotoUsuario">
@@ -35,12 +35,12 @@
 
                         <div class="form-floating mt-3 mb-3">
                             <select class="form-select" id="cidadeUsuario" name="cidadeUsuario" placeholder="Cidade">
-                                <option value="curiuva">Curiúva</option>
-                                <option value="imbau">Imbaú</option>
-                                <option value="ortigueira">Ortigueira</option>
-                                <option value="reserva">Reserva</option>
-                                <option value="telemaco" selected>Telêmaco Borba</option>
-                                <option value="tibagi">Tibagi</option>
+                                <option value="Curiúva">Curiúva</option>
+                                <option value="Imbaú">Imbaú</option>
+                                <option value="Ortigueira">Ortigueira</option>
+                                <option value="Reserva">Reserva</option>
+                                <option value="Telêmaco Borba" selected>Telêmaco Borba</option>
+                                <option value="Tibagi">Tibagi</option>
                             </select>
                             <label for="cidadeUsuario">Cidade</label>
                             <div class="valid-feedback"></div>
