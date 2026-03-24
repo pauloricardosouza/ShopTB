@@ -142,47 +142,61 @@
                 $erroUpload = true;
             }
 
+            //Se NÃO houver erro de preenchimento e NÃO houver erro no upload da foto
             if(!$erroPreenchimento && !$erroUpload){
+
+                //Criar uma variável para armazenar a QUERY que realiza a inserção de dados do Usuário na tabela Usuarios
+                $inserirUsuario = "INSERT INTO Usuarios (fotoUsuario, nomeUsuario, dataNascimentoUsuario, cidadeUsuario, emailUsuario, senhaUsuario)
+                                    VALUES ('$fotoUsuario', '$nomeUsuario', '$dataNascimentoUsuario', '$cidadeUsuario', '$emailUsuario', '$senhaUsuario')";
 
                 //Inclui o arquivo de conexão com o Banco de Dados
                 include "conexaoBD.php";
 
-                echo "<div class='container'>";
-                    echo "<div class='alert alert-success text-center'><strong>USUÁRIO</strong> cadastrado com sucesso!</div>";
-                    echo "
-                        <div class='container mt-3'>
-                            <div class='container mt-3 mb-3 text-center'>
-                                <img src='$fotoUsuario' style='width:150px' title='Foto de $nomeUsuario' class='img-thumbnail'>
+                //Se conseguir executar a QUERY para inserção, exibe alerta de sucesso e a tabela com os dados informados
+                //A funçao mysqli_query executa operações no Banco de Dados
+                if(mysqli_query($conn, $inserirUsuario)){
+
+                    echo "<div class='container'>";
+                        echo "<div class='alert alert-success text-center'><strong>USUÁRIO</strong> cadastrado com sucesso!</div>";
+                        echo "
+                            <div class='container mt-3'>
+                                <div class='container mt-3 mb-3 text-center'>
+                                    <img src='$fotoUsuario' style='width:150px' title='Foto de $nomeUsuario' class='img-thumbnail'>
+                                </div>
+                                <table class='table'>
+                                    <tr>
+                                        <th>NOME</th>
+                                        <td>$nomeUsuario</td>
+                                    </tr>
+                                    <tr>
+                                        <th>DATA DE NASCIMENTO</th>
+                                        <td>$diaNascimentoUsuario/$mesNascimentoUsuario/$anoNascimentoUsuario</td>
+                                    </tr>
+                                    <tr>
+                                        <th>CIDADE</th>
+                                        <td>$cidadeUsuario</td>
+                                    </tr>
+                                    <tr>
+                                        <th>EMAIL</th>
+                                        <td>$emailUsuario</td>
+                                    </tr>
+                                    <tr>
+                                        <th>SENHA</th>
+                                        <td>$senhaUsuario</td>
+                                    </tr>
+                                    <tr>
+                                        <th>CONFIRMAÇÃO DE SENHA</th>
+                                        <td>$confirmarSenhaUsuario</td>
+                                    </tr>
+                                </table>
                             </div>
-                            <table class='table'>
-                                <tr>
-                                    <th>NOME</th>
-                                    <td>$nomeUsuario</td>
-                                </tr>
-                                <tr>
-                                    <th>DATA DE NASCIMENTO</th>
-                                    <td>$diaNascimentoUsuario/$mesNascimentoUsuario/$anoNascimentoUsuario</td>
-                                </tr>
-                                <tr>
-                                    <th>CIDADE</th>
-                                    <td>$cidadeUsuario</td>
-                                </tr>
-                                <tr>
-                                    <th>EMAIL</th>
-                                    <td>$emailUsuario</td>
-                                </tr>
-                                <tr>
-                                    <th>SENHA</th>
-                                    <td>$senhaUsuario</td>
-                                </tr>
-                                <tr>
-                                    <th>CONFIRMAÇÃO DE SENHA</th>
-                                    <td>$confirmarSenhaUsuario</td>
-                                </tr>
-                            </table>
-                        </div>
-                    ";
-                echo "</div>";
+                        ";
+                    echo "</div>";
+                }
+                else{
+                    echo "<div class='alert alert-danger text-center'>
+                    Erro ao tentar inserir dados do<strong>USUÁRIO</strong> no banco de dados $database!</div>";
+                }
             }
 
         }
