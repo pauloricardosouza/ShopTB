@@ -13,28 +13,28 @@
                     <form action="actionUsuario.php" method="POST" class="was-validated" enctype="multipart/form-data">
 
                         <div class="form-floating mt-3 mb-3">
-                            <input type="file" class="form-control" id="fotoUsuario" placeholder="Foto" name="fotoUsuario">
+                            <input type="file" class="form-control" id="fotoUsuario" placeholder="Foto" name="fotoUsuario" required>
                             <label for="fotoUsuario">Foto</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-floating mt-3 mb-3">
-                            <input type="text" class="form-control" id="nomeUsuario" placeholder="Nome" name="nomeUsuario">
+                            <input type="text" class="form-control" id="nomeUsuario" placeholder="Nome" name="nomeUsuario" required>
                             <label for="nomeUsuario">Nome Completo</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-floating mt-3 mb-3">
-                            <input type="date" class="form-control" id="dataNascimentoUsuario" placeholder="dataNascimentoUsuario" name="dataNascimentoUsuario">
+                            <input type="date" class="form-control" id="dataNascimentoUsuario" placeholder="dataNascimentoUsuario" name="dataNascimentoUsuario" required>
                             <label for="dataNascimentoUsuario">Data de Nascimento</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-floating mt-3 mb-3">
-                            <select class="form-select" id="cidadeUsuario" name="cidadeUsuario" placeholder="Cidade">
+                            <select class="form-select" id="cidadeUsuario" name="cidadeUsuario" placeholder="Cidade" required>
                                 <option value="Curiúva">Curiúva</option>
                                 <option value="Imbaú">Imbaú</option>
                                 <option value="Ortigueira">Ortigueira</option>
@@ -48,19 +48,19 @@
                         </div>
 
                         <div class="form-floating mt-3 mb-3">
-                            <input type="email" class="form-control" id="emailUsuario" placeholder="Email" name="emailUsuario">
+                            <input type="email" class="form-control" id="emailUsuario" placeholder="Email" name="emailUsuario" required>
                             <label for="emailUsuario">Email</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-floating mt-3 mb-3">
-                            <input type="password" class="form-control" id="senhaUsuario" placeholder="Email" name="senhaUsuario">
+                            <input type="password" class="form-control" id="senhaUsuario" placeholder="Email" name="senhaUsuario" required>
                             <label for="senhaUsuario">Senha</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>
                         </div>
                         <div class="form-floating mt-3 mb-3">
-                            <input type="password" class="form-control" id="confirmarSenhaUsuario" placeholder="Confirmar Senha" name="confirmarSenhaUsuario">
+                            <input type="password" class="form-control" id="confirmarSenhaUsuario" placeholder="Confirmar Senha" name="confirmarSenhaUsuario" required>
                             <label for="confirmarSenhaUsuario">Confirmar Senha</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>

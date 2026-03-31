@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/03/2026 às 23:34
+-- Tempo de geração: 31/03/2026 às 02:26
 -- Versão do servidor: 8.0.41
 -- Versão do PHP: 8.2.12
 
@@ -38,6 +38,16 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
+-- Despejando dados para a tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`idUsuario`, `fotoUsuario`, `nomeUsuario`, `dataNascimentoUsuario`, `cidadeUsuario`, `emailUsuario`, `senhaUsuario`) VALUES
+(1, 'assets/img/people04.jpg', 'Juliana Veloso', '1999-03-23', 'Telêmaco Borba', 'joao.oliveira@gmail.com', '202cb962ac59075b964b07152d234b70'),
+(3, 'assets/img/people01.jpg', 'Carlos Eduardo dos Santos', '1995-03-04', 'Imbaú', 'carlos.santos@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+(4, 'assets/img/people02.jpg', 'Marcos Aurélio Ramos', '1997-10-12', 'Ortigueira', 'marcos.ramos@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
+(5, 'assets/img/people03.jpg', 'Maria Luiza Soares', '1999-06-02', 'Tibagi', 'maria.soares@gmail.com', 'caf1a3dfb505ffed0d024130f58c5cfa');
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -55,7 +65,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
