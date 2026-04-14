@@ -1,3 +1,20 @@
+<?php
+
+    error_reporting(0); //Desabilita alertas de erros de execução
+    session_start();
+
+    if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){ //Verifica se há sessão ativa
+        $idUsuario    = $_SESSION['idUsuario']; //Armazenar as variáveis de sessão em variáveis PHP
+        $nomeUsuario  = $_SESSION['nomeUsuario'];
+        $emailUsuario = $_SESSION['emailUsuario'];
+        $nivelUsuario = $_SESSION['nivelUsuario'];
+
+        $nomeCompleto = explode(' ', $nomeUsuario); //Usa a função explode para fragmentar o nome do usuário
+        $primeiroNome = $nomeCompleto[0]; //Armazena na variável o primeiro [0] fragmento do nome do usuário
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <?php
@@ -60,7 +77,15 @@
                         </button>
                     </form>
                     <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link" aria-current="page" href="formLogin.php">Login</a></li>
+                        <?php
+                            if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){ //Verifica se há sessão ativa
+                                echo "<li class='nav-item'><a class='nav-link' aria-current='page' href='logout.php' title='Sair do Sistema'>Sair</a></li>";
+                            }
+                            else{
+                                echo "<li class='nav-item'><a class='nav-link' aria-current='page' href='formLogin.php' title='Acessar o Sistema'>Login</a></li>";
+                            }
+
+                        ?>
                     </ul>
                 </div>
             </div>

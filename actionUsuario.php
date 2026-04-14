@@ -146,8 +146,8 @@
             if(!$erroPreenchimento && !$erroUpload){
 
                 //Criar uma variável para armazenar a QUERY que realiza a inserção de dados do Usuário na tabela Usuarios
-                $inserirUsuario = "INSERT INTO Usuarios (fotoUsuario, nomeUsuario, dataNascimentoUsuario, cidadeUsuario, emailUsuario, senhaUsuario)
-                                    VALUES ('$fotoUsuario', '$nomeUsuario', '$dataNascimentoUsuario', '$cidadeUsuario', '$emailUsuario', '$senhaUsuario')";
+                $inserirUsuario = "INSERT INTO Usuarios (fotoUsuario, nomeUsuario, dataNascimentoUsuario, cidadeUsuario, emailUsuario, senhaUsuario, nivelUsuario)
+                                    VALUES ('$fotoUsuario', '$nomeUsuario', '$dataNascimentoUsuario', '$cidadeUsuario', '$emailUsuario', '$senhaUsuario', 'usuario')";
 
                 //Inclui o arquivo de conexão com o Banco de Dados
                 include "conexaoBD.php";
