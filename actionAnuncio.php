@@ -12,7 +12,7 @@
             $erroPreenchimento = false;
 
             //Captura a data e a hora do servidor
-            $dataAnuncio = date("d/m/Y");
+            $dataAnuncio = date("Y-m-d");
             $horaAnuncio = date("H:i:s");
 
             //Validação do campo tituloAnuncio
@@ -96,14 +96,14 @@
             if(!$erroPreenchimento && !$erroUpload){
 
                 //Criar uma variável para armazenar a QUERY que realiza a inserção de dados do Usuário na tabela Usuarios
-                //$inserirUsuario = "INSERT INTO Usuarios (fotoUsuario, nomeUsuario, dataNascimentoUsuario, cidadeUsuario, emailUsuario, senhaUsuario) VALUES ('$fotoUsuario', '$nomeUsuario', '$dataNascimentoUsuario', '$cidadeUsuario', '$emailUsuario', '$senhaUsuario')";
+                $inserirAnuncio = "INSERT INTO Anuncios (Usuarios_idUsuario, fotoAnuncio, tituloAnuncio, categoriaAnuncio, descricaoAnuncio, valorAnuncio, dataAnuncio, horaAnuncio, statusAnuncio) VALUES ('$idUsuario', '$fotoAnuncio', '$tituloAnuncio', '$categoriaAnuncio', '$descricaoAnuncio', $valorAnuncio, '$dataAnuncio', '$horaAnuncio', 'disponivel')";
 
                 //Inclui o arquivo de conexão com o Banco de Dados
                 include "conexaoBD.php";
 
                 //Se conseguir executar a QUERY para inserção, exibe alerta de sucesso e a tabela com os dados informados
                 //A funçao mysqli_query executa operações no Banco de Dados
-                //if(mysqli_query($conn, $inserirUsuario)){
+                if(mysqli_query($conn, $inserirAnuncio)){
 
                     echo "<div class='container'>";
                         echo "<div class='alert alert-success text-center'><strong>ANÚNCIO</strong> cadastrado com sucesso!</div>";
@@ -137,11 +137,11 @@
                             </div>
                         ";
                     echo "</div>";
-                /*}
+                }
                 else{
                     echo "<div class='alert alert-danger text-center'>
-                    Erro ao tentar inserir dados do<strong>USUÁRIO</strong> no banco de dados $database!</div>";
-                }*/
+                    Erro ao tentar inserir dados do<strong>ANÚNCIO</strong> no banco de dados $database!</div>" . mysqli_error($conn);
+                }
             }
 
         }
