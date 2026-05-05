@@ -1,7 +1,4 @@
-                </div>
-        <!-- Encerramento da seção para conteúdo da página -->
-        </section>
-        
+     
         <!-- Footer-->
         <footer class="py-2 bg-dark fixed-bottom">
             <div class="container"><p class="m-0 text-center text-white">Sistema Web Desenvolvido no curso de TADS do IFPR Campus Telêmaco Borba &copy <?php echo date("Y");?></p></div>
