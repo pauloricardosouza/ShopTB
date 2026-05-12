@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/04/2026 às 02:15
+-- Tempo de geração: 12/05/2026 às 02:46
 -- Versão do servidor: 8.0.41
 -- Versão do PHP: 8.2.12
 
@@ -46,7 +46,7 @@ CREATE TABLE `anuncios` (
 
 INSERT INTO `anuncios` (`idAnuncio`, `Usuarios_idUsuario`, `fotoAnuncio`, `tituloAnuncio`, `categoriaAnuncio`, `descricaoAnuncio`, `valorAnuncio`, `dataAnuncio`, `horaAnuncio`, `statusAnuncio`) VALUES
 (1, 4, 'assets/img/PS5_PRO.jpg', 'Console PS5 Pro', 'Games', 'Console SONY PlayStation 5 Pro, com 3 meses de uso, com um controle, sem jogos e com nota fiscal.', 6000.00, '2026-04-27', '20:29:41', 'disponivel'),
-(2, 5, 'assets/img/iphone17.jpg', 'iPhone 17 Pro Max 512GB', 'Alimentos', 'Aparelho Smartphone Apple iPhone 17 Pro Max com 512GB de armazenamento. 6 meses de Uso.', 7000.00, '2026-04-27', '21:04:30', 'disponivel');
+(2, 5, 'assets/img/iphone17.jpg', 'iPhone 17 Pro Max 512GB', 'Games', 'Aparelho Smartphone Apple iPhone 17 Pro Max com 512GB de armazenamento. 6 meses de Uso.', 7000.00, '2026-04-27', '21:04:30', 'disponivel');
 
 -- --------------------------------------------------------
 

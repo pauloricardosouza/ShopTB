@@ -1,134 +1,169 @@
-<?php include "header.php" ?>
+<?php
 
-        <!-- Product section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
-                    <div class="col-md-6">
-                        <div class="small mb-1">SKU: BST-498</div>
-                        <h1 class="display-5 fw-bolder">Shop item template</h1>
-                        <div class="fs-5 mb-5">
-                            <span class="text-decoration-line-through">$45.00</span>
-                            <span>$40.00</span>
-                        </div>
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
-                        <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    include "header.php";
+    include "conexaoBD.php";
+
+    if(isset($_GET['idAnuncio'])){
+        $idAnuncio = $_GET['idAnuncio'];
+
+        //QUERY para buscar o anúncio e o nome do anunciante
+        $buscarAnuncio = "SELECT anuncios.*, usuarios.nomeUsuario
+                          FROM anuncios
+                          INNER JOIN usuarios
+                            ON anuncios.Usuarios_idUsuario = usuarios.idUsuario
+                          WHERE anuncios.idAnuncio = $idAnuncio
+                          ";
+
+        //Executa a QUERY
+        $resAnuncio = mysqli_query($conn, $buscarAnuncio);
+
+        //Verifica se encontrou o anúncio
+        if(mysqli_num_rows($resAnuncio) > 0){
+            //Converte o resultado em array associativo
+            $anuncio = mysqli_fetch_assoc($resAnuncio);
+            //Guarda a categoria para buscar os produtos relacionados
+            $categoriaAnuncio = $anuncio['categoriaAnuncio'];
+        }
+        else{
+            echo "<div class='alert alert-danger text-center'>Anúncio não encontrado!</div>";
+            include "footer.php";
+            exit();
+        }
+                
+    }
+    else{
+        echo "<div class='alert alert-danger text-center'>ID do Anúncio não informado!</div>";
+        include "footer.php";
+        exit();
+    }
+
+?>
+
+<style>
+    .img-produto-principal {
+        width: 100%;
+        max-height: 600px;
+        object-fit: contain;
+    }
+
+    .img-produto-relacionado {
+        width: 100%;
+        height: 180px;
+        object-fit: contain;
+        background-color: #f8f9fa;
+        padding: 10px;
+    }
+
+    .titulo-relacionado {
+        min-height:55px;
+        overflow-wrap: break-word;
+    }
+
+    .card-relacionado {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card-relacionado:hover {
+        transform: translateY(-5px);
+        box-shadow 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+</style>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+                <img class="img-produto-principal mb-5 mb-md-0"
+                     src="<?php echo htmlspecialchars($anuncio['fotoAnuncio']); ?>"
+                     alt="<?php echo htmlspecialchars($anuncio['tituloAnuncio']); ?>"
+                     title="<?php echo htmlspecialchars($anuncio['tituloAnuncio']); ?>"
+                />
             </div>
-        </section>
-        <!-- Related items section-->
-        <section class="py-5 bg-light">
-            <div class="container px-4 px-lg-5 mt-5">
-                <h2 class="fw-bolder mb-4">Related products</h2>
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Fancy Product</h5>
-                                    <!-- Product price-->
-                                    $40.00 - $80.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Special Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$20.00</span>
-                                    $18.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Sale Item</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Popular Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    $40.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-md-6">
+                <div class="small mb-1">
+                    Categoria: <?php echo htmlspecialchars($anuncio['categoriaAnuncio']) ?>
                 </div>
+                <h1 class="display-5 fw-bolder">
+                    <?php echo htmlspecialchars($anuncio['tituloAnuncio']) ?>
+                </h1>
+                <div class="fs-5 mb-5">
+                    R$ <?php echo number_format($anuncio['valorAnuncio'], 2, ',', '.'); ?>
+                </div>
+                <p class="lead">
+                    <?php echo htmlspecialchars($anuncio['descricaoAnuncio']); ?>
+                </p>
+                <p class="text-muted">
+                    Anunciado por <strong><?php echo htmlspecialchars($anuncio['nomeUsuario']); ?></strong><br>
+                    Publicado em <?php echo date('d/m/Y', strtotime($anuncio['dataAnuncio'])); ?>
+                    às <?php echo date('H:i', strtotime($anuncio['horaAnuncio'])); ?>
+                </p>
+
+                <?php
+                    if($anuncio['statusAnuncio'] == 'disponivel'){ ?>
+                        <a href="#efetuarCompra.php" class="btn btn-outline-dark btn-lg mt-3">
+                            <i class="bi bi-cart-fill me-1"></i>
+                            Comprar
+                        </a>
+                <?php
+                    }
+                    else{
+                ?>
+                        <button class="btn btn-secondary btn-lg mt-3" disabled>
+                            Anúncio Finalizado
+                        </button>
+                <?php
+                    }
+                ?>
             </div>
-        </section>
-    
-<?php include "footer.php" ?>
+        </div>
+    </div>
+</section>
+
+<!-- Seção de Anúncios Relacionados -->
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="f2-bolder mb-4">Produtos Relacionados</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-5 row-cols-xl-4 justify-content-center">
+            <?php
+                $listarRelacionados = "
+                    SELECT * FROM anuncios
+                    WHERE categoriaAnuncio = '$categoriaAnuncio'
+                    AND idAnuncio != $idAnuncio
+                    AND statusAnuncio = 'disponivel'
+                ";
+
+                $resRelacionados = mysqli_query($conn, $listarRelacionados);
+
+                if(mysqli_num_rows($resRelacionados) > 0){
+                    while($relacionado = mysqli_fetch_assoc($resRelacionados)){
+            ?>
+
+            <div class="col mb-5">
+                <a class="text-decoration-none text-dark" href="visualizarAnuncio.php?idAnuncio=<?php echo $relacionado['idAnuncio'] ?>" >
+                    <div class="card h-100 card-relacionado">
+                        <img class="card-img-top img-produto-relacionado"
+                             src="<?php echo htmlspecialchars($relacionado['fotoAnuncio']); ?>"
+                             alt="<?php echo htmlspecialchars($relacionado['tituloAnuncio']); ?>"
+                             title="<?php echo htmlspecialchars($relacionado['tituloAnuncio']); ?>"
+                        />
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <h5 class="fw-bolder titulo-relacionado"><?php echo htmlspecialchars($relacionado['tituloAnuncio']); ?></h5>
+                                <p class="text-muted-small"><?php echo htmlspecialchars($relacionado['categoriaAnuncio']) ?></p>
+                                <p>R$ <?php echo number_format($relacionado['valorAnuncio'], 2, ',', '.'); ?></p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <?php
+                    }
+                }
+                else{
+                    echo "<p class='text-center'>Nenhum produto relacionado encontrado.</p>";
+                }
+            ?>
+        </div>
+    </div>
+</section>

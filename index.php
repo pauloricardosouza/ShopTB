@@ -115,7 +115,7 @@
             <div class="col mb-5">
 
                 <!-- Link que torna todo o card clicável -->
-                <a class="card-link" href="visualizarAnuncio.php">
+                <a class="card-link" href="visualizarAnuncio.php?idAnuncio=<?php echo $anuncio['idAnuncio']; ?>">
                     <div class="card h-100 card-hover">
 
                         <!-- Overlay exibido ao passar o mouse -->
