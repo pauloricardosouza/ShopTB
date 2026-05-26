@@ -64,6 +64,27 @@
         opacity: 1;
     }
 
+    /*Faixa de anúncio finalizado*/
+    .faixa-finalizado{
+        right: 0;
+        position: absolute;
+        width: 50%;
+        background: #dc3545;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        font-size: 0.7rem;
+        padding: 5px 0;
+        z-index: 10;
+        box-shadow 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    /*Deixa a imagem em preto e branco*/
+    .imagem-finalizada {
+        filter: grayscale(100%);
+        opacity: 0.8;
+    }
+
 </style>
 
 
@@ -118,13 +139,19 @@
                 <a class="card-link" href="visualizarAnuncio.php?idAnuncio=<?php echo $anuncio['idAnuncio']; ?>">
                     <div class="card h-100 card-hover">
 
+                        <?php
+                            if($anuncio['statusAnuncio'] == 'finalizado'){
+                                echo "<div class='faixa-finalizado'>FINALIZADO</div>";
+                            }
+                        ?>
+
                         <!-- Overlay exibido ao passar o mouse -->
                         <div class="card-overlay">
                             <i class="bi bi-eye me-2"></i> Visualizar Anúncio
                         </div>
 
                         <!-- Imagem do Anúncio -->
-                        <img class="card-img-top"
+                        <img class="card-img-top <?php if($anuncio['statusAnuncio'] == 'finalizado'){echo'imagem-finalizada';} ?>"
                              src="<?php echo htmlspecialchars($anuncio['fotoAnuncio']) ?>"
                              alt="<?php echo htmlspecialchars($anuncio['tituloAnuncio']) ?>" />
 

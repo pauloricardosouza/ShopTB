@@ -26,7 +26,7 @@
         $_SESSION['logado']       = true;
 
         //Redireciona o usuário para a página inicial
-        header("Location: teste.php");
+        header("Location: index.php");
         exit();
 
     }

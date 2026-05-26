@@ -60,29 +60,40 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Página Inicial</a></li>
                         <li class="nav-item"><a class="nav-link" href="#sobre.php">Sobre</a></li>
                     </ul>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Carrinho
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
-                    </form>
+                    
                     <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
                         <?php
                             if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){ //Verifica se há sessão ativa
-                                echo "
-                                    <li class='nav-item dropdown'>
-                                        <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>$primeiroNome</a>
-                                        <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                                            <li><a class='dropdown-item' href='formAnuncio.php'>Criar Anúncio</a></li>
-                                            <li><hr class='dropdown-divider' /></li>
-                                            <li><a class='dropdown-item' href='#!'>Meus Anúncios</a></li>
-                                            <li><a class='dropdown-item' href='#!'>Minhas Compras</a></li>
-                                            <li><hr class='dropdown-divider' /></li>
-                                            <li><a class='dropdown-item' href='logout.php'>Sair</a></li>
-                                        </ul>
-                                    </li>
-                                ";
+                                if($nivelUsuario == 'administrador'){
+                                    echo "
+                                        <li class='nav-item dropdown'>
+                                            <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i> $primeiroNome</a>
+                                            <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                                <li><a class='dropdown-item' href='formAnuncio.php'>Criar Anúncio</a></li>
+                                                <li><hr class='dropdown-divider' /></li>
+                                                <li><a class='dropdown-item' href='#!'>Gerenciar Anúncios</a></li>
+                                                <li><a class='dropdown-item' href='#!'>Gerenciar Usuários</a></li>
+                                                <li><hr class='dropdown-divider' /></li>
+                                                <li><a class='dropdown-item' href='logout.php'>Sair</a></li>
+                                            </ul>
+                                        </li>
+                                    ";
+                                }
+                                else{
+                                    echo "
+                                        <li class='nav-item dropdown'>
+                                            <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i> $primeiroNome</a>
+                                            <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                                                <li><a class='dropdown-item' href='formAnuncio.php'>Criar Anúncio</a></li>
+                                                <li><hr class='dropdown-divider' /></li>
+                                                <li><a class='dropdown-item' href='#!'>Meus Anúncios</a></li>
+                                                <li><a class='dropdown-item' href='#!'>Minhas Compras</a></li>
+                                                <li><hr class='dropdown-divider' /></li>
+                                                <li><a class='dropdown-item' href='logout.php'>Sair</a></li>
+                                            </ul>
+                                        </li>
+                                    ";
+                                }
                             }
                             else{
                                 echo "<li class='nav-item'><a class='nav-link' aria-current='page' href='formLogin.php' title='Acessar o Sistema'>Login</a></li>";

@@ -100,19 +100,39 @@
                 </p>
 
                 <?php
-                    if($anuncio['statusAnuncio'] == 'disponivel'){ ?>
-                        <a href="#efetuarCompra.php" class="btn btn-outline-dark btn-lg mt-3">
-                            <i class="bi bi-cart-fill me-1"></i>
-                            Comprar
-                        </a>
-                <?php
+                    if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){ //Verifica se há sessão ativa
+                        if($anuncio['statusAnuncio'] == 'disponivel'){ //Verifica se o anúncio está disponível
+                            if($_SESSION["idUsuario"] == $anuncio['Usuarios_idUsuario']){ //Verifica se Anúncio pertence ao usuário logado
+                                echo "
+                                    <a href='#formEditarAnuncio.php' class='btn btn-outline-dark btn-lg mt-3'>
+                                        <i class='bi bi-gear me-1'></i>
+                                        Editar Anúncio
+                                    </a>
+                                ";
+                            }
+                            else{
+                                echo "
+                                    <a href='efetuarCompra.php?idAnuncio=$idAnuncio' class='btn btn-outline-dark btn-lg mt-3'>
+                                        <i class='bi bi-cart-fill me-1'></i>
+                                        Comprar
+                                    </a>
+                                ";
+                            }
+                        }
+                        else{
+                            echo "
+                                <button class='btn btn-secondary btn-lg mt-3' disabled>
+                                    Anúncio Finalizado
+                                </button>
+                            ";
+                        }
                     }
                     else{
-                ?>
-                        <button class="btn btn-secondary btn-lg mt-3" disabled>
-                            Anúncio Finalizado
-                        </button>
-                <?php
+                        echo "
+                            <a href='formLogin.php' class='btn btn-outline-dark btn-lg mt-3'>
+                                <i class='bi bi-person me-1'></i>Acesse o sistema para efetuar a compra
+                            </a>
+                        ";
                     }
                 ?>
             </div>
@@ -167,3 +187,5 @@
         </div>
     </div>
 </section>
+
+<?php include "footer.php"; ?>
