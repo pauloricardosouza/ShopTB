@@ -46,6 +46,28 @@
                 font-style: normal;
                 font-size: 2rem;
             }
+
+            /* Faixa diagonal de anúncio finalizado */
+            .faixa-finalizado {
+                position: absolute;
+                top: 0%;
+                right: 0;
+                width: 50%;
+                background: #dc3545;
+                color: white;
+                text-align: center;
+                font-weight: bold;
+                font-size: 0.7rem;
+                padding: 5px 0;
+                z-index: 10;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            }
+
+            /* Deixa a imagem em preto e branco */
+            .imagem-finalizada {
+                filter: grayscale(100%);
+                opacity: 0.8;
+            }
         </style>
 
     </head>
@@ -60,14 +82,14 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Página Inicial</a></li>
                         <li class="nav-item"><a class="nav-link" href="#sobre.php">Sobre</a></li>
                     </ul>
-                    
+                   
                     <ul class="navbar-nav mb-2 mb-lg-0 ms-lg-4">
                         <?php
                             if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){ //Verifica se há sessão ativa
                                 if($nivelUsuario == 'administrador'){
                                     echo "
                                         <li class='nav-item dropdown'>
-                                            <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i> $primeiroNome</a>
+                                            <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i>&nbsp$primeiroNome</a>
                                             <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
                                                 <li><a class='dropdown-item' href='formAnuncio.php'>Criar Anúncio</a></li>
                                                 <li><hr class='dropdown-divider' /></li>
@@ -82,12 +104,12 @@
                                 else{
                                     echo "
                                         <li class='nav-item dropdown'>
-                                            <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i> $primeiroNome</a>
+                                            <a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'><i class='bi bi-person-circle'></i>&nbsp$primeiroNome</a>
                                             <ul class='dropdown-menu' aria-labelledby='navbarDropdown'>
                                                 <li><a class='dropdown-item' href='formAnuncio.php'>Criar Anúncio</a></li>
                                                 <li><hr class='dropdown-divider' /></li>
-                                                <li><a class='dropdown-item' href='#!'>Meus Anúncios</a></li>
-                                                <li><a class='dropdown-item' href='#!'>Minhas Compras</a></li>
+                                                <li><a class='dropdown-item' href='meusAnuncios.php'>Meus Anúncios</a></li>
+                                                <li><a class='dropdown-item' href='minhasCompras.php'>Minhas Compras</a></li>
                                                 <li><hr class='dropdown-divider' /></li>
                                                 <li><a class='dropdown-item' href='logout.php'>Sair</a></li>
                                             </ul>

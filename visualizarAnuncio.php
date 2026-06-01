@@ -23,6 +23,14 @@
             $anuncio = mysqli_fetch_assoc($resAnuncio);
             //Guarda a categoria para buscar os produtos relacionados
             $categoriaAnuncio = $anuncio['categoriaAnuncio'];
+            $idAnuncio        = $anuncio['idAnuncio'];
+            $fotoAnuncio      = $anuncio['fotoAnuncio'];
+            $tituloAnuncio    = $anuncio['tituloAnuncio'];
+            $descricaoAnuncio = $anuncio['descricaoAnuncio'];
+            $valorAnuncio     = $anuncio['valorAnuncio'];
+            $dataAnuncio      = $anuncio['dataAnuncio'];
+            $horaAnuncio      = $anuncio['horaAnuncio'];
+            $statusAnuncio    = $anuncio['statusAnuncio'];
         }
         else{
             echo "<div class='alert alert-danger text-center'>Anúncio não encontrado!</div>";
@@ -72,39 +80,40 @@
 
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
+        
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6">
-                <img class="img-produto-principal mb-5 mb-md-0"
-                     src="<?php echo htmlspecialchars($anuncio['fotoAnuncio']); ?>"
-                     alt="<?php echo htmlspecialchars($anuncio['tituloAnuncio']); ?>"
-                     title="<?php echo htmlspecialchars($anuncio['tituloAnuncio']); ?>"
+                <img class="img-produto-principal mb-5 mb-md-0 <?php if($statusAnuncio == 'finalizado'){ echo 'imagem-finalizada'; } ?>"
+                     src="<?php echo htmlspecialchars($fotoAnuncio); ?>"
+                     alt="<?php echo htmlspecialchars($tituloAnuncio); ?>"
+                     title="<?php echo htmlspecialchars($tituloAnuncio); ?>"
                 />
             </div>
             <div class="col-md-6">
                 <div class="small mb-1">
-                    Categoria: <?php echo htmlspecialchars($anuncio['categoriaAnuncio']) ?>
+                    Categoria: <?php echo htmlspecialchars($categoriaAnuncio) ?>
                 </div>
                 <h1 class="display-5 fw-bolder">
-                    <?php echo htmlspecialchars($anuncio['tituloAnuncio']) ?>
+                    <?php echo htmlspecialchars($tituloAnuncio) ?>
                 </h1>
                 <div class="fs-5 mb-5">
-                    R$ <?php echo number_format($anuncio['valorAnuncio'], 2, ',', '.'); ?>
+                    R$ <?php echo number_format($valorAnuncio, 2, ',', '.'); ?>
                 </div>
                 <p class="lead">
-                    <?php echo htmlspecialchars($anuncio['descricaoAnuncio']); ?>
+                    <?php echo htmlspecialchars($descricaoAnuncio); ?>
                 </p>
                 <p class="text-muted">
                     Anunciado por <strong><?php echo htmlspecialchars($anuncio['nomeUsuario']); ?></strong><br>
-                    Publicado em <?php echo date('d/m/Y', strtotime($anuncio['dataAnuncio'])); ?>
-                    às <?php echo date('H:i', strtotime($anuncio['horaAnuncio'])); ?>
+                    Publicado em <?php echo date('d/m/Y', strtotime($dataAnuncio)); ?>
+                    às <?php echo date('H:i', strtotime($horaAnuncio)); ?>
                 </p>
 
                 <?php
-                    if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){ //Verifica se há sessão ativa
-                        if($anuncio['statusAnuncio'] == 'disponivel'){ //Verifica se o anúncio está disponível
-                            if($_SESSION["idUsuario"] == $anuncio['Usuarios_idUsuario']){ //Verifica se Anúncio pertence ao usuário logado
+                    if($anuncio['statusAnuncio'] == 'disponivel'){ //Verifica se o anúncio está disponível
+                        if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){ //Verifica se há sessão ativa
+                            if($_SESSION['idUsuario'] == $anuncio['Usuarios_idUsuario']){ //Verifica se o Anúncio pertence ao usuário logado
                                 echo "
-                                    <a href='#formEditarAnuncio.php' class='btn btn-outline-dark btn-lg mt-3'>
+                                    <a href='formEditarAnuncio.php?idAnuncio=$idAnuncio' class='btn btn-outline-dark btn-lg mt-3'>
                                         <i class='bi bi-gear me-1'></i>
                                         Editar Anúncio
                                     </a>
@@ -121,19 +130,21 @@
                         }
                         else{
                             echo "
-                                <button class='btn btn-secondary btn-lg mt-3' disabled>
-                                    Anúncio Finalizado
-                                </button>
+                                <a href='formLogin.php' class='btn btn-outline-dark btn-lg mt-3'>
+                                    <i class='bi bi-person me-1'></i>
+                                    Acesse o sistema para efetuar a compra
+                                </a>
                             ";
                         }
                     }
                     else{
                         echo "
-                            <a href='formLogin.php' class='btn btn-outline-dark btn-lg mt-3'>
-                                <i class='bi bi-person me-1'></i>Acesse o sistema para efetuar a compra
-                            </a>
+                            <button class='btn btn-secondary btn-lg mt-3' disabled>
+                                Anúncio Finalizado
+                            </button>
                         ";
                     }
+                    
                 ?>
             </div>
         </div>
@@ -188,4 +199,5 @@
     </div>
 </section>
 
-<?php include "footer.php"; ?>
+
+<?php include "footer.php" ?>
