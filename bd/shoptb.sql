@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/05/2026 às 02:46
+-- Tempo de geração: 02/06/2026 às 00:57
 -- Versão do servidor: 8.0.41
 -- Versão do PHP: 8.2.12
 
@@ -45,8 +45,30 @@ CREATE TABLE `anuncios` (
 --
 
 INSERT INTO `anuncios` (`idAnuncio`, `Usuarios_idUsuario`, `fotoAnuncio`, `tituloAnuncio`, `categoriaAnuncio`, `descricaoAnuncio`, `valorAnuncio`, `dataAnuncio`, `horaAnuncio`, `statusAnuncio`) VALUES
-(1, 4, 'assets/img/PS5_PRO.jpg', 'Console PS5 Pro', 'Games', 'Console SONY PlayStation 5 Pro, com 3 meses de uso, com um controle, sem jogos e com nota fiscal.', 6000.00, '2026-04-27', '20:29:41', 'disponivel'),
-(2, 5, 'assets/img/iphone17.jpg', 'iPhone 17 Pro Max 512GB', 'Games', 'Aparelho Smartphone Apple iPhone 17 Pro Max com 512GB de armazenamento. 6 meses de Uso.', 7000.00, '2026-04-27', '21:04:30', 'disponivel');
+(1, 4, 'assets/img/PS5_PRO.jpg', 'Console PS5 Pro', 'Eletrônicos', 'Console SONY PlayStation 5 Pro, com 3 meses de uso, com um controle, sem jogos e com nota fiscal.', 6000.00, '2026-04-27', '20:29:41', 'disponivel'),
+(2, 5, 'assets/img/iphone17.jpg', 'iPhone 17 Pro Max 512GB', 'Eletrônicos', 'Aparelho Smartphone Apple iPhone 17 Pro Max com 512GB de armazenamento. 6 meses de Uso.', 7000.00, '2026-04-27', '21:04:30', 'finalizado');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `compras`
+--
+
+CREATE TABLE `compras` (
+  `idCompra` int NOT NULL,
+  `Usuarios_idUsuario` int NOT NULL,
+  `Anuncios_idAnuncio` int NOT NULL,
+  `dataCompra` date NOT NULL,
+  `horaCompra` time NOT NULL,
+  `valorCompra` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Despejando dados para a tabela `compras`
+--
+
+INSERT INTO `compras` (`idCompra`, `Usuarios_idUsuario`, `Anuncios_idAnuncio`, `dataCompra`, `horaCompra`, `valorCompra`) VALUES
+(1, 3, 2, '2026-05-25', '20:38:31', 7000.00);
 
 -- --------------------------------------------------------
 
@@ -87,6 +109,14 @@ ALTER TABLE `anuncios`
   ADD KEY `fk_anuncios_usuarios` (`Usuarios_idUsuario`);
 
 --
+-- Índices de tabela `compras`
+--
+ALTER TABLE `compras`
+  ADD PRIMARY KEY (`idCompra`),
+  ADD KEY `fk_compras_usuarios` (`Usuarios_idUsuario`),
+  ADD KEY `fk_compras_anuncios` (`Anuncios_idAnuncio`);
+
+--
 -- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -103,6 +133,12 @@ ALTER TABLE `anuncios`
   MODIFY `idAnuncio` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de tabela `compras`
+--
+ALTER TABLE `compras`
+  MODIFY `idCompra` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -117,6 +153,13 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `anuncios`
   ADD CONSTRAINT `fk_anuncios_usuarios` FOREIGN KEY (`Usuarios_idUsuario`) REFERENCES `usuarios` (`idUsuario`);
+
+--
+-- Restrições para tabelas `compras`
+--
+ALTER TABLE `compras`
+  ADD CONSTRAINT `fk_compras_anuncios` FOREIGN KEY (`Anuncios_idAnuncio`) REFERENCES `anuncios` (`idAnuncio`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_compras_usuarios` FOREIGN KEY (`Usuarios_idUsuario`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
