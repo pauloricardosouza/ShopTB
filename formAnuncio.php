@@ -29,7 +29,7 @@
                         <div class="form-floating mt-3 mb-3">
                             <select class="form-select" id="categoriaAnuncio" name="categoriaAnuncio" placeholder="Selecione uma Categoria">
                                 <option value="Alimentos" selected>Alimentos</option>
-                                <option value="Games">Games</option>
+                                <option value="Eletrônicos">Eletrônicos</option>
                                 <option value="Imóveis">Imóveis</option>
                                 <option value="Veículos">Veículos</option>
                                 <option value="Vestuário">Vestuário</option>
